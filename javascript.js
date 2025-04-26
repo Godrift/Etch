@@ -21,11 +21,10 @@ for (let i = 0; i < 16; i++) {
 const getNumber = function(){
     let number = prompt("Number of Squares per Row");
 
-    if (number <= 100){
+    if (number <= 100 || number <= 0){
         return(number);
     }else {
-        console.log("100 is maximum")
-        getNumber();
+        return getNumber();
     }
     
 };
@@ -42,11 +41,23 @@ const createGrid = function(){
     container.appendChild(divColumn);
     for (let j = 0; j < numSquares; j++) {
         const div = document.createElement("div");
-        div.classList.add(`N${j}`, "square");
+        div.classList.add(`N${j}`, "squareNew");
+        div.style.backgroundColor = "grey";
+
+        const divWidth = (960*59/60)/numSquares;
+
+        console.log(divWidth);
+        div.style.height = `${divWidth}px`;
+        div.style.width = `${divWidth}px`;
+        div.style.margin = `${(960/60)/numSquares}px`;
+
+
         div.addEventListener("mouseover", hoverSquare);
         divColumn.appendChild(div);
     }
 }
+
+
     
     
 };
